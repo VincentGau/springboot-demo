@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Index</title>
+    <link th:if="${mode=='dev'}" rel="stylesheet" th:href="@{/bootstrap.css}"/>
+    <link th:if="${mode=='prod'}" rel="stylesheet" th:href="@{/bootstrap.min.css}"/>
+</head>
+<body>
+<p class="navbar-text" th:text="${username}">Default text</p>
+</body>
+</html>
