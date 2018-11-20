@@ -1,5 +1,6 @@
 package com.haku.springbootdemo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Book;
@@ -11,30 +12,34 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/bookings")
 public class BookingController {
 
-    private List<Booking> bookings;
+    BookingRepositoty bookingRepositoty;
 
-    public BookingController(){
-        bookings = new ArrayList<>();
-
-        bookings.add(new Booking("Marriot", 1200, 3));
-        bookings.add(new Booking("W", 1000, 4));
-        bookings.add(new Booking("Haku", 1100, 5));
+    @Autowired
+    public BookingController(BookingRepositoty bookingRepositoty){
+        this.bookingRepositoty = bookingRepositoty;
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Booking> getAll(){
-        return bookings;
+        return bookingRepositoty.findAll();
     }
 
     @RequestMapping(value = "/affordable/{price}")
     public List<Booking> getAffordable(@PathVariable double price){
-        return bookings.stream().filter(x -> x.getPricePerNight() <= price)
-                .collect(Collectors.toList());
+        return bookingRepositoty.findByPricePerNightLessThan(price);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<Booking> create(@RequestBody Booking booking){
-        bookings.add(booking);
-        return bookings;
+        bookingRepositoty.save(booking);
+        return bookingRepositoty.findAll();
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public List<Booking> delete(@PathVariable long id){
+        bookingRepositoty.deleteById(id);
+
+        return bookingRepositoty.findAll();
+
     }
 }
