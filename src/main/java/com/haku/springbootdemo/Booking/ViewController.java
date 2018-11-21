@@ -1,4 +1,4 @@
-package com.haku.springbootdemo;
+package com.haku.springbootdemo.Booking;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

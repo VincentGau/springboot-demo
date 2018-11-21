@@ -1,4 +1,4 @@
-package com.haku.springbootdemo;
+package com.haku.springbootdemo.Booking;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.haku.springbootdemo;
+package com.haku.springbootdemo.Booking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -10,11 +10,11 @@ import java.util.List;
 @Component
 public class DbSeeder implements CommandLineRunner {
 
-    private BookingRepositoty bookingRepositoty;
+    private BookingRepository bookingRepository;
 
     @Autowired
-    public DbSeeder(BookingRepositoty bookingRepositoty){
-        this.bookingRepositoty = bookingRepositoty;
+    public DbSeeder(BookingRepository bookingRepository){
+        this.bookingRepository = bookingRepository;
     }
 
     @Override
@@ -26,6 +26,6 @@ public class DbSeeder implements CommandLineRunner {
         bookings.add(new Booking("W", 1000, 4));
         bookings.add(new Booking("Haku", 1100, 5));
 
-        bookingRepositoty.saveAll(bookings);
+        bookingRepository.saveAll(bookings);
     }
 }
