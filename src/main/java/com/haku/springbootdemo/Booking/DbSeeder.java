@@ -35,8 +35,8 @@ public class DbSeeder implements CommandLineRunner {
 
         List<Customer> customers = new ArrayList<>();
 
-        customers.add(new Customer((long)1, "haku"));
-        customers.add(new Customer((long)2, "chihiro"));
+        customers.add(new Customer(1, "haku"));
+        customers.add(new Customer(2, "chihiro"));
 
         customerRepository.saveAll(customers);
 
