@@ -3,6 +3,8 @@ package com.haku.springbootdemo.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+import java.awt.print.Book;
 import java.util.List;
 
 @RestController
@@ -36,6 +38,20 @@ public class BookingController {
     public List<Booking> delete(@PathVariable long id){
         bookingRepository.deleteById(id);
         return bookingRepository.findAll();
+    }
 
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String update(@PathVariable long id, @RequestBody Booking booking){
+        try{
+            Booking bookingToUpdate = bookingRepository.getOne(id);
+            bookingToUpdate.setHotelName(booking.getHotelName());
+            bookingToUpdate.setNbOfNight(booking.getNbOfNight());
+            bookingToUpdate.setPricePerNight(booking.getPricePerNight());
+            bookingRepository.save(bookingToUpdate);
+            return "OK";
+        }
+        catch (EntityNotFoundException e){
+            return "No booking with id " + id;
+        }
     }
 }
