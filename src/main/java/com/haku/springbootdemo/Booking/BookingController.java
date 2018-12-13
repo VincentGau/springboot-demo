@@ -40,8 +40,22 @@ public class BookingController {
         return bookingRepository.findAll();
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String update(@PathVariable long id, @RequestBody Booking booking){
+    @RequestMapping(value = "update/{id}", method = RequestMethod.POST)
+    public List<Booking> update(@PathVariable long id, @RequestBody Booking booking){
+        Booking bookingToUpdate = bookingRepository.findById(id).orElse(null);
+        if(bookingToUpdate == null){
+            return null;
+        }
+        bookingToUpdate.setHotelName(booking.getHotelName());
+        bookingToUpdate.setNbOfNight(booking.getNbOfNight());
+        bookingToUpdate.setPricePerNight(booking.getPricePerNight());
+        bookingRepository.save(bookingToUpdate);
+        return bookingRepository.findAll();
+
+    }
+
+    @RequestMapping(value = "/update2/{id}", method = RequestMethod.POST)
+    public String update2(@PathVariable long id, @RequestBody Booking booking){
         try{
             Booking bookingToUpdate = bookingRepository.getOne(id);
             bookingToUpdate.setHotelName(booking.getHotelName());
@@ -54,4 +68,6 @@ public class BookingController {
             return "No booking with id " + id;
         }
     }
+
+
 }
