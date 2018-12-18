@@ -1,0 +1,20 @@
+<configuration scan="true" scanPeriod="90 seconds">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <driverClass>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClass>
+            <url>jdbc:sqlserver://localhost;databaseName=HakuTest</url>
+            <user>sa</user>
+            <password>sa</password>
+        </connectionSource>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="DB" />
+    </root>
+</configuration>

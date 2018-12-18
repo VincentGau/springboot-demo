@@ -1,5 +1,7 @@
 package com.haku.springbootdemo.Booking;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ public class BookingController {
 
     BookingRepository bookingRepository;
 
+    private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
+
+
     @Autowired
     public BookingController(BookingRepository bookingRepository){
         this.bookingRepository = bookingRepository;
@@ -20,6 +25,7 @@ public class BookingController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Booking> getAll(){
+        logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAExample log from {}", BookingController.class.getSimpleName());
         return bookingRepository.findAll();
     }
 
