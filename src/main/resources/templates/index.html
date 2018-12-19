@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Booking Index</title>
-    <link th:if="${mode=='dev'}" rel="stylesheet" th:href="@{/bootstrap.css}"/>
     <link th:if="${mode=='prod'}" rel="stylesheet" th:href="@{/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/kendo.default.min.css}"/>
+    <link rel="stylesheet" th:href="@{/kendo.common.min.css}"/>
     <script type="text/javascript" th:src="@{/angular.min.js}"></script>
     <script type="text/javascript" th:src="@{/app/customer.controller.js}"></script>
+    <script type="text/javascript" th:src="@{/app/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/kendo.all.min.js}"></script>
 </head>
 <body ng-app="myApp" ng-controller="BookingController as vm">
 <p class="navbar-text" th:text="${username}">Default text</p>

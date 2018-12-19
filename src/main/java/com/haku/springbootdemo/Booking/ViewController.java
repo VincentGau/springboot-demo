@@ -13,4 +13,9 @@ public class ViewController {
         model.addAttribute("mode", "prod");
         return "index";
     }
+
+    @RequestMapping("/kendo")
+    public String kendo(){
+        return "customer/index";
+    }
 }
