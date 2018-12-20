@@ -5,16 +5,16 @@
         </encoder>
     </appender>
 
-    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
-        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
-            <driverClass>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClass>
-            <url>jdbc:sqlserver://localhost;databaseName=HakuTest</url>
-            <user>sa</user>
-            <password>sa</password>
-        </connectionSource>
-    </appender>
+    <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->
+        <!--<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">-->
+            <!--<driverClass>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClass>-->
+            <!--<url>jdbc:sqlserver://localhost;databaseName=HakuTest</url>-->
+            <!--<user>sa</user>-->
+            <!--<password>sa</password>-->
+        <!--</connectionSource>-->
+    <!--</appender>-->
 
     <root level="info">
-        <appender-ref ref="DB" />
+        <appender-ref ref="STDOUT" />
     </root>
 </configuration>
