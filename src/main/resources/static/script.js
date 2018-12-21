@@ -53,5 +53,5 @@ $(document).ready(function(){
             $('#value1').text(jqXHR.responseText || textStatus);
         });
     }
-    
+
 });
