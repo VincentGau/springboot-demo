@@ -1,42 +1,46 @@
 $(document).ready(function(){
-    // $("#grid").kendoGrid({
-    //     sortable:true,
-    //     columns: [{
-    //         field: "FirstName",
-    //         title: "First Name"
-    //     },
-    //         {
-    //             field: "LastName",
-    //             title: "Last Name"
-    //         }],
-    //     dataSource: {
-    //         data: [{
-    //             FirstName: "Joe",
-    //             LastName: "Smith"
-    //         },
-    //             {
-    //                 FirstName: "Jane",
-    //                 LastName: "Smith"
-    //             }]
-    //     }
-    // });
-
-    // var dataSource = new kendo.data.DataSource({
-    //     transport: {
-    //         read:  {
-    //             url: "http://localhost:9000/api/values/GetProducts/",
-    //             dataType: "json" // "jsonp" is required for cross-domain requests; use "json" for same-domain requests
-    //         }
-    //     }
-    // });
-    // dataSource.fetch(function(){
-    //     var data = dataSource.data();
-    //     console.log(data.length);  // displays "77"
-    //     console.log(data[0].ProductName); // displays "Chai"
-    // });
-
     var serviceUrl = 'http://localhost:9000/api/values/GetProducts/';
 
+    $("#grid").kendoGrid({
+
+        dataSource: {
+            transport: {
+                read: {
+                    url: serviceUrl,
+
+                },
+                parameterMap:function(options, operation){
+                    return "page=" + options.page + "&pagesize=" + options.pageSize;
+                }
+            },
+            serverPaging:true,
+            schema: {
+                data: "ResultList",
+                total:"total"
+            }
+        },
+        pageable: {
+            pageSize: 10,
+            numeric: true,
+            buttonCount:1,
+            refresh:true
+        },
+
+        columns: [
+            {field: "Id", title: "Product Id"},
+            {field: "Name", title: "Product Name"},
+            {field: "Remark", title: "Remark"},
+        ],
+        // height: 500,
+        scrollable: true,
+        selectable: "multiple",
+        toolbar: ["create", "save", "cancel"],
+    });
+
+
+
+    // var serviceUrl = 'http://localhost:9000/api/values/GetProducts/';
+    //
     sendRequest = function() {
         var method = $('#method').val();
 
@@ -49,4 +53,5 @@ $(document).ready(function(){
             $('#value1').text(jqXHR.responseText || textStatus);
         });
     }
+    
 });
