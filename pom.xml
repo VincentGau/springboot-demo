@@ -67,6 +67,7 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+
         <!--logger begin-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -84,6 +85,8 @@
             <version>1.7.25</version>
         </dependency>
         <!--logger end-->
+
+
 
     </dependencies>
 
