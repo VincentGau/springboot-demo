@@ -41,17 +41,59 @@ $(document).ready(function(){
     sendRequest = function() {
         var method = $('#method').val();
 
+        // $.ajax({
+        //     type: method,
+        //     url: serviceUrl,
+        //     dataType:"json"
+        // }).done(function (data) {
+        //     alert("1");
+        //     alert(data);
+        //     $('#value1').text(data);
+        // }).error(function (jqXHR, textStatus, errorThrown) {
+        //     alert("2");
+        //     $('#value1').text(jqXHR.responseText || textStatus);
+        // });
+
+        // url1 = 'http://ewealth.abchina.com/insurance/0000000001.htm';
+        url1 = 'http://ewealth.abchina.com/insurance/1110000001.htm';
+
         $.ajax({
-            type: method,
-            url: serviceUrl,
-            dataType:"json"
-        }).done(function (data) {
-            alert("1");
-            alert(data);
-            $('#value1').text(data);
-        }).error(function (jqXHR, textStatus, errorThrown) {
-            alert("2");
-            $('#value1').text(jqXHR.responseText || textStatus);
+            url: url1,
+            type: 'GET',
+            dataType:'jsonp',
+
+            complete: function(response) {
+                alert(response.status);
+                if(response.status == 200) {
+                    window.open(url1);
+                } else {
+                    alert('Invalid');
+
+                }
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                if(xhr.status==404) {
+                    alert(thrownError);
+                }
+            }
         });
+
+
+
+
+        // $.ajax({
+        //     type:'GET',
+        //     url:'http://www.baidu.com',
+        //     // dataType:"jsonp",
+        //     complete:function(data){
+        //       alert(data.status);
+        //     },
+        //     success:function(res,heads,code){
+        //         alert(code.status);
+        //     },
+        //     error:function(){
+        //         alert("WWWW");
+        //     }
+        // })
     }
 });
