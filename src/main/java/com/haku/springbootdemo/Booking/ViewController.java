@@ -18,4 +18,9 @@ public class ViewController {
     public String kendo(){
         return "customer/index";
     }
+
+    @RequestMapping("/kendo/chart")
+    public String chart(){
+        return "chart";
+    }
 }
