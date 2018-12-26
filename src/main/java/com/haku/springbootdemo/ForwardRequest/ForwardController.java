@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ForwardController {
 
     @RequestMapping(value = "/getproducts", produces = "application/json")
-    public String getEmployees(@RequestParam("page") String page, @RequestParam("pagesize") String pagesize)
+    public String getProducts(@RequestParam("page") String page, @RequestParam("pagesize") String pagesize)
     {
         final String uri = String.format("http://localhost:9000/api/values/GetProducts/?page=%s&pagesize=%s", page, pagesize);
 
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(uri, String.class);
-
     }
 }
