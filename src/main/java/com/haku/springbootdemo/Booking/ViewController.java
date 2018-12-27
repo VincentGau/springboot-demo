@@ -8,10 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ViewController {
 
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(){
+        return "index";
+    }
+
+    @RequestMapping("/bookinglistview")
+    public String bookinglistview(Model model){
         model.addAttribute("username", "haku");
         model.addAttribute("mode", "prod");
-        return "index";
+        return "bookinglistview";
     }
 
     @RequestMapping("/kendo")
@@ -22,5 +27,10 @@ public class ViewController {
     @RequestMapping("/kendo/chart")
     public String chart(){
         return "chart";
+    }
+
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
     }
 }

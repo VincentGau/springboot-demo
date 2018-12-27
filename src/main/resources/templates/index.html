@@ -1,47 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Booking Index</title>
-    <link th:if="${mode=='prod'}" rel="stylesheet" th:href="@{/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/kendo.default.min.css}"/>
-    <link rel="stylesheet" th:href="@{/kendo.common.min.css}"/>
-    <script type="text/javascript" th:src="@{/angular.min.js}"></script>
-    <script type="text/javascript" th:src="@{/app/customer.controller.js}"></script>
-    <script type="text/javascript" th:src="@{/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/kendo.all.min.js}"></script>
+    <title>Title</title>
 </head>
-<body ng-app="myApp" ng-controller="BookingController as vm">
-<p class="navbar-text" th:text="${username}">Default text</p>
-
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>hotelName</th>
-                <th>pricePerNight</th>
-                <th>nbOfNight</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="booking in bookings">
-                <td>{{booking.id}}</td>
-                <td>{{booking.hotelName}}</td>
-                <td>{{booking.pricePerNight}}</td>
-                <td>{{booking.nbOfNight}}</td>
-                <td>
-                    <button class="btn btn-danger" ng-click="deleteBooking(booking.id)">Delete</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <button class="btn btn-danger" ng-click="getAll()">Allaa</button>
-        <button class="btn btn-danger" ng-click="getAffordable()">Affordable</button>
-    </div>
-</div>
-
+<body>
+THIS IS HOME PAGE!
 </body>
 </html>
