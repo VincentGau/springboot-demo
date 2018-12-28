@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Customer Index</title>
-    <link rel="stylesheet" th:href="@{/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/kendo.default.min.css}"/>
-    <link rel="stylesheet" th:href="@{/kendo.common.min.css}"/>
-    <script type="text/javascript" th:src="@{/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/kendo.all.min.js}"></script>
-    <script type="text/javascript" th:src="@{/script.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/kendo.default.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/kendo.common.min.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/kendo.all.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
 
 
 </head>
 <body>
+
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 
 <div id="grid"></div>
 <div>
