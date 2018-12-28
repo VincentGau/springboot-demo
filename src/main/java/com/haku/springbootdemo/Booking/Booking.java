@@ -60,7 +60,7 @@ import javax.persistence.Id;
 public class Booking{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String hotelName;

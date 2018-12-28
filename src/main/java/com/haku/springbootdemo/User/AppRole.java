@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -16,8 +14,15 @@ import javax.persistence.Id;
 public class AppRole {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long roldid;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     private String rolename;
+
+//    @ManyToMany(mappedBy = "roleSet")
+//    private Set<AppUser> userSet;
+//
+//    public AppRole(String rolename){
+//        this.rolename = rolename;
+//    }
 }
