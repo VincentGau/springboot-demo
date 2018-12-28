@@ -46,30 +46,30 @@ public class DbSeeder implements CommandLineRunner {
         customers.add(new Customer(2, "chihiro"));
         customerRepository.saveAll(customers);
 
-        List<AppUser> appUsers = new ArrayList<>();
-        appUsers.add(new AppUser(1, "Haku", "123"));
-        appUsers.add(new AppUser(2, "Chihiro", "123"));
-        appUserRepository.saveAll(appUsers);
+//        List<AppUser> appUsers = new ArrayList<>();
+//        appUsers.add(new AppUser(1, "Haku", "123"));
+//        appUsers.add(new AppUser(2, "Chihiro", "123"));
+//        appUserRepository.saveAll(appUsers);
 
-//        AppRole role1 = new AppRole("Admin");
-//        AppRole role2 = new AppRole("Manager");
-//        AppRole role3 = new AppRole("staff");
-//
-//
-//        Set<AppRole> roleSet1 = new HashSet<AppRole>();
-//        roleSet1.add(role1);
-//        roleSet1.add(role2);
-//        Set<AppRole> roleSet2 = new HashSet<AppRole>();
-//        roleSet2.add(role1);
-//        roleSet2.add(role3);
-//        appRoleRepository.save(role1);
-//        appRoleRepository.save(role2);
-//        appRoleRepository.save(role3);
-//
-//        AppUser user1 = new AppUser("Kohaku","123", roleSet1);
-//        AppUser user2 = new AppUser("Chihiro","123", roleSet2);
-//        appUserRepository.save(user1);
-//        appUserRepository.save(user2);
+        AppRole role1 = new AppRole("Admin");
+        AppRole role2 = new AppRole("Manager");
+        AppRole role3 = new AppRole("staff");
+
+
+        Set<AppRole> roleSet1 = new HashSet<AppRole>();
+        roleSet1.add(role1);
+        roleSet1.add(role2);
+        Set<AppRole> roleSet2 = new HashSet<AppRole>();
+        roleSet2.add(role1);
+        roleSet2.add(role3);
+        appRoleRepository.save(role1);
+        appRoleRepository.save(role2);
+        appRoleRepository.save(role3);
+
+        AppUser user1 = new AppUser("haku", "123", roleSet1);
+        AppUser user2 = new AppUser("chihiro", "123", roleSet2);
+        appUserRepository.save(user1);
+        appUserRepository.save(user2);
 
 
 

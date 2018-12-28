@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,29 +26,30 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.appUserRepository = appUserRepository;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username){
-        AppUser user = appUserRepository.findByUsername(username);
-        if(user != null){
-            List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-            return new User(user.getUsername(), user.getPassword(),authorities);
-        }
-        throw new UsernameNotFoundException("User " + username + " not found.");
-    }
-
 //    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+//    public UserDetails loadUserByUsername(String username){
 //        AppUser user = appUserRepository.findByUsername(username);
-//
 //        if(user != null){
-//            Set<GrantedAuthority> authorities = new HashSet<>();
-//            for(AppRole role:user.getRoleSet()){
-//                authorities.add(new SimpleGrantedAuthority(role.getRolename()));
-//            }
-//
-//            return new User(user.getUsername(), user.getPassword(), authorities);
+//            List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+//            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+//            return new User(user.getUsername(), user.getPassword(),authorities);
 //        }
 //        throw new UsernameNotFoundException("User " + username + " not found.");
 //    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+        AppUser user = appUserRepository.findByUsername(username);
+
+        if(user != null){
+            Set<GrantedAuthority> authorities = new HashSet<>();
+            for(AppRole role:user.getRoles()){
+                authorities.add(new SimpleGrantedAuthority(role.getName()));
+            }
+
+            return new User(user.getUsername(), user.getPassword(), authorities);
+        }
+        throw new UsernameNotFoundException("User " + username + " not found.");
+    }
 }

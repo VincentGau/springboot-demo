@@ -1,5 +1,6 @@
 package com.haku.springbootdemo.Booking;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class ViewController {
     }
 
     @RequestMapping("/kendo")
+    @PreAuthorize("hasRole('Manager')")
     public String kendo(){
         return "customer/index";
     }
