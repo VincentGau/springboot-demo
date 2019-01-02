@@ -21,7 +21,7 @@ public class ViewController {
     }
 
     @RequestMapping("/kendo")
-    @PreAuthorize("hasRole('Manager')")
+//    @PreAuthorize("hasRole('Manager')")
     public String kendo(){
         return "customer/index";
     }
